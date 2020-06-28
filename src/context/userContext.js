@@ -1,10 +1,11 @@
 import React from "react";
 
-const { Provider, Consumer } = React.createContext();
+const UserContext = React.createContext();
 
 class UserContextProvider extends React.Component {
   state = {
-    isLogged: false,
+    isLogged: true,
+    userName: "Makhmud",
   };
 
   login = () => {
@@ -15,14 +16,22 @@ class UserContextProvider extends React.Component {
     this.setState({ isLogged: false });
   };
 
+  setUsername = (newUsername) => {
+    this.setState({ userName: newUsername });
+  };
+
   render() {
     const isLogged = this.state.isLogged;
+    const userName = this.state.userName;
+
     return (
-      <Provider value={{ isLogged, login: this.login, logout: this.logout }}>
+      <UserContext.Provider
+        value={{ isLogged, userName, login: this.login, logout: this.logout }}
+      >
         {this.props.children}
-      </Provider>
+      </UserContext.Provider>
     );
   }
 }
 
-export { UserContextProvider, Consumer as UserContextConsumer };
+export { UserContextProvider, UserContext };

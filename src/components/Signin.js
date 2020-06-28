@@ -1,25 +1,37 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import Username from "./inputs/Username";
-import Password from "./inputs/Password";
-import Button from "./interface/Button";
-import Heading from "./interface/Heading";
-import { UserContextConsumer } from "../context/userContext";
+import { UserContext } from "../context/userContext";
+import classNames from "classnames";
+import TextField from "./ui/TextField";
+import Button from "./ui/Button";
+import Heading from "./ui/Heading";
 
 function Signin() {
+  const { isLogged, userName } = useContext(UserContext);
+  const wrapperClassnames = classNames("w-full max-w-sm m-auto mt-20");
   return (
-    <div className={`w-full max-w-sm m-auto mt-20`}>
+    <div className={wrapperClassnames}>
       <Heading text="Sign In" />
-      {/* <UserContextConsumer>
-        {(isLogged) => <p>Welcome, {isLogged ? "yes" : "no"}!</p>}
-      </UserContextConsumer> */}
+
+      {isLogged ? `Hello, ${userName}` : "you're not logged in"}
+
       <form className={`bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4`}>
         <div className="mb-4">
-          <Username />
+          <TextField
+            label="Username"
+            inputId="username"
+            type="text"
+            placeholder="Username"
+          />
         </div>
 
         <div className="mb-6">
-          <Password labelText="Password" />
+          <TextField
+            label="Password"
+            inputId="password"
+            type="password"
+            placeholder="*****"
+          />
         </div>
 
         <div className={`flex items-center justify-between`}>
