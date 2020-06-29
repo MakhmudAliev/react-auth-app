@@ -1,24 +1,18 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
+import { ProtectedRoute } from "./components/protected/ProtectedRoute";
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <Signin />
-        </Route>
-        <Route path="/dashboard">
-          <Dashboard />
-        </Route>
-        <Route path="/signup">
-          <Signup />
-        </Route>
-      </Switch>
-    </Router>
+    <Switch>
+      <Route exact path="/" component={Signin} />
+      <ProtectedRoute path="/dashboard" component={Dashboard} />
+      <Route path="/signup" component={Signup} />
+      <Route path="*" component={() => "404 NOT FOUND"} />
+    </Switch>
   );
 }
 

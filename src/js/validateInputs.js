@@ -1,4 +1,13 @@
-const validateInputs = () => {
+// import React from "react";
+// import { Redirect, BrowserRouter as Router } from "react-router-dom";
+
+/**
+ * Function validates inputs: validates email, checks password matching, password should be longer than 6 chars
+ */
+const validateInputs = (cb) => {
+  //event.preventDefault();
+  console.log("validation...");
+
   const usernameInput = document.querySelector("#username");
   const passwordInput = document.querySelector("#password");
   const passwordConfirmationInput = document.querySelector(
@@ -9,6 +18,7 @@ const validateInputs = () => {
 
   if (notValidEmail(usernameInput.value)) {
     warning.innerHTML = "Email address is not valid";
+    usernameInput.classList.add("border-red-500");
     return;
   }
 
@@ -24,8 +34,13 @@ const validateInputs = () => {
   }
 
   console.log("everything is fine");
+  cb();
 };
 
+/**
+ * Function validates email using regexp
+ * @param {string} email
+ */
 const notValidEmail = (email) => {
   var re = /\S+@\S+\.\S+/;
   return !re.test(email);

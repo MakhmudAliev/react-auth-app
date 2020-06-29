@@ -4,16 +4,22 @@ const UserContext = React.createContext();
 
 class UserContextProvider extends React.Component {
   state = {
-    isLogged: true,
+    isLogged: false,
     userName: "Makhmud",
   };
 
-  login = () => {
+  login = (cb) => {
     this.setState({ isLogged: true });
+    cb();
   };
 
-  logout = () => {
+  logout = (cb) => {
     this.setState({ isLogged: false });
+    cb();
+  };
+
+  isAuthorized = () => {
+    return this.state.isLogged;
   };
 
   setUsername = (newUsername) => {
@@ -26,7 +32,14 @@ class UserContextProvider extends React.Component {
 
     return (
       <UserContext.Provider
-        value={{ isLogged, userName, login: this.login, logout: this.logout }}
+        value={{
+          isLogged,
+          userName,
+          login: this.login,
+          logout: this.logout,
+          isAuthorized: this.isAuthorized,
+          setUsername: this.setUsername,
+        }}
       >
         {this.props.children}
       </UserContext.Provider>

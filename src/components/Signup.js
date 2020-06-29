@@ -2,12 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 import TextField from "./ui/TextField";
-import Button from "./ui/Button";
 import Heading from "./ui/Heading";
-import { validateInputs } from "../validateInputs";
+import { validateInputs } from "../js/validateInputs";
 
-function Signup() {
+function Signup(props) {
   const warningClassname = classNames("text-red-500  mb-4");
+  const buttonClassnames = classNames(
+    "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+  );
 
   return (
     <div className={`w-full max-w-sm m-auto mt-20`}>
@@ -42,8 +44,19 @@ function Signup() {
 
         <div className={`flex items-center justify-between`}>
           {/* <Link to="/dashboard"> */}
-          <Button textOnButton="Sign Up" validateInputs={validateInputs} />
+          {/* <Button textOnButton="Sign Up" buttonType="submit" validateInputs={validateInputs} /> */}
           {/* </Link> */}
+          <button
+            className={buttonClassnames}
+            onClick={(event) => {
+              event.preventDefault();
+              validateInputs(() => {
+                props.history.push("/");
+              });
+            }}
+          >
+            Sign in
+          </button>
           <Link
             className={`inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800`}
             to="/"

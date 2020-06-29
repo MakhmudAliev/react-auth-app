@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../context/userContext";
 import classNames from "classnames";
 import TextField from "./ui/TextField";
-import Button from "./ui/Button";
 import Heading from "./ui/Heading";
 
-function Signin() {
-  const { isLogged, userName } = useContext(UserContext);
+function Signin(props) {
+  const { isLogged, userName, login } = useContext(UserContext);
   const wrapperClassnames = classNames("w-full max-w-sm m-auto mt-20");
+  const buttonClassnames = classNames(
+    "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+  );
+
   return (
     <div className={wrapperClassnames}>
       <Heading text="Sign In" />
@@ -35,9 +38,16 @@ function Signin() {
         </div>
 
         <div className={`flex items-center justify-between`}>
-          <Link to="/dashboard">
-            <Button textOnButton="Sign In" />
-          </Link>
+          <button
+            className={buttonClassnames}
+            onClick={() => {
+              login(() => {
+                props.history.push("/dashboard");
+              });
+            }}
+          >
+            Sign in
+          </button>
           <Link
             className={`inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800`}
             to="/signup"
