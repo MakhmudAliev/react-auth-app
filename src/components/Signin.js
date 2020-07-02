@@ -4,8 +4,10 @@ import { UserContext } from "../context/userContext";
 import classNames from "classnames";
 import TextField from "./ui/TextField";
 import Heading from "./ui/Heading";
+import { validateSigninInputs } from "../validation/validateSigninInputs";
 
 function Signin(props) {
+  const warningClassname = classNames("text-red-500  mb-4");
   const { isLogged, userName, login } = useContext(UserContext);
   const wrapperClassnames = classNames("w-full max-w-sm m-auto mt-20");
   const buttonClassnames = classNames(
@@ -16,9 +18,10 @@ function Signin(props) {
     <div className={wrapperClassnames}>
       <Heading text="Sign In" />
 
-      {isLogged ? `Hello, ${userName}` : "you're not logged in"}
+      <div>{isLogged ? `Hello, ${userName}` : "you're not logged in"}</div>
 
       <form className={`bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4`}>
+        <div className={warningClassname} id="warning"></div>
         <div className="mb-4">
           <TextField
             label="Username"
@@ -40,9 +43,12 @@ function Signin(props) {
         <div className={`flex items-center justify-between`}>
           <button
             className={buttonClassnames}
-            onClick={() => {
-              login(() => {
-                props.history.push("/dashboard");
+            onClick={(event) => {
+              event.preventDefault();
+              validateSigninInputs(() => {
+                login(() => {
+                  props.history.push("/dashboard");
+                });
               });
             }}
           >

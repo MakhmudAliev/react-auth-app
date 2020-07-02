@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import classNames from "classnames";
 import TextField from "./ui/TextField";
 import Heading from "./ui/Heading";
-import { validateSignupInputs } from "../js/validateSignupInputs";
+import { validateSignupInputs } from "../validation/validateSignupInputs";
 
 function Signup(props) {
   const warningClassname = classNames("text-red-500  mb-4");
