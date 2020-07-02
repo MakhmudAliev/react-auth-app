@@ -5,6 +5,8 @@ import Signin from "./components/Signin";
 import Signup from "./components/Signup";
 import { ProtectedRoute } from "./components/protected/ProtectedRoute";
 
+import "./styles/main.css";
+
 function App() {
   return (
     <Switch>

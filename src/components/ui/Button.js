@@ -1,8 +1,5 @@
 import React from "react";
 import ClassNames from "classnames";
-//import { validateInputs } from "../../js/validateInputs";
-
-//{ props, textOnButton, validateInputs, buttonType }
 
 function Button({ textOnButton, validateInputs, buttonType }) {
   const buttonClassnames = ClassNames(
