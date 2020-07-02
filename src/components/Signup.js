@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import classNames from "classnames";
 import TextField from "./ui/TextField";
 import Heading from "./ui/Heading";
-import { validateInputs } from "../js/validateInputs";
+import { validateSignupInputs } from "../js/validateSignupInputs";
 
 function Signup(props) {
   const warningClassname = classNames("text-red-500  mb-4");
@@ -43,19 +43,16 @@ function Signup(props) {
         </div>
 
         <div className={`flex items-center justify-between`}>
-          {/* <Link to="/dashboard"> */}
-          {/* <Button textOnButton="Sign Up" buttonType="submit" validateInputs={validateInputs} /> */}
-          {/* </Link> */}
           <button
             className={buttonClassnames}
             onClick={(event) => {
               event.preventDefault();
-              validateInputs(() => {
+              validateSignupInputs(() => {
                 props.history.push("/");
               });
             }}
           >
-            Sign in
+            Sign Up
           </button>
           <Link
             className={`inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800`}

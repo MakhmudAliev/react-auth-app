@@ -18,10 +18,6 @@ class UserContextProvider extends React.Component {
     cb();
   };
 
-  isAuthorized = () => {
-    return this.state.isLogged;
-  };
-
   setUsername = (newUsername) => {
     this.setState({ userName: newUsername });
   };
@@ -37,7 +33,6 @@ class UserContextProvider extends React.Component {
           userName,
           login: this.login,
           logout: this.logout,
-          isAuthorized: this.isAuthorized,
           setUsername: this.setUsername,
         }}
       >

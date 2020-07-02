@@ -1,18 +1,10 @@
-// import React from "react";
-// import { Redirect, BrowserRouter as Router } from "react-router-dom";
-
 /**
- * Function validates inputs: validates email, checks password matching, password should be longer than 6 chars
+ * Function validates sing In inputs: fields should not be empty
  */
-const validateInputs = (cb) => {
-  //event.preventDefault();
-  console.log("validation...");
 
+const validateSigninInputs = (cb) => {
   const usernameInput = document.querySelector("#username");
   const passwordInput = document.querySelector("#password");
-  const passwordConfirmationInput = document.querySelector(
-    "#password-confirmation"
-  );
   const warning = document.querySelector("#warning");
   warning.innerHTML = "";
 
@@ -33,17 +25,7 @@ const validateInputs = (cb) => {
     return;
   }
 
-  console.log("everything is fine");
   cb();
 };
 
-/**
- * Function validates email using regexp
- * @param {string} email
- */
-const notValidEmail = (email) => {
-  var re = /\S+@\S+\.\S+/;
-  return !re.test(email);
-};
-
-export { validateInputs };
+export { validateSigninInputs };
